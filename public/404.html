@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script>
+      // GitHub Pages SPA fallback (based on rafgraph/spa-github-pages)
+      (function (l) {
+        var pathSegments = l.pathname.split('/').filter(Boolean);
+        // For project pages (e.g. /repo/...), keep the first segment as base.
+        var pathSegmentsToKeep = pathSegments.length > 1 ? 1 : 0;
+
+        l.replace(
+          l.protocol +
+            '//' +
+            l.hostname +
+            (l.port ? ':' + l.port : '') +
+            l.pathname
+              .split('/')
+              .slice(0, 1 + pathSegmentsToKeep)
+              .join('/') +
+            '/?/' +
+            l.pathname
+              .split('/')
+              .slice(1 + pathSegmentsToKeep)
+              .join('/')
+              .replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+      })(window.location);
+    </script>
+  </body>
+</html>
